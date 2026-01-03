@@ -1,0 +1,105 @@
+# Docker Compose for local development and testing
+version: '3.8'
+
+services:
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: moodmelodies-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # Translation Service
+  translation:
+    build:
+      context: ../translation-service
+      dockerfile: Dockerfile
+    container_name: moodmelodies-translation
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - PORT=5000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=1
+      - USE_GPU=false
+      - LOG_LEVEL=INFO
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../translation-service/models:/app/models
+      - ../translation-service/src:/app/src
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Signaling Server
+  signaling:
+    build:
+      context: ../signaling-server
+      dockerfile: Dockerfile
+    container_name: moodmelodies-signaling
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - LOG_LEVEL=info
+      - TRANSLATION_SERVICE_URL=http://translation:5000
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../signaling-server/src:/app/src
+      - ../signaling-server/logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # TURN Server (optional, for NAT traversal)
+  coturn:
+    image: coturn/coturn:latest
+    container_name: moodmelodies-turn
+    ports:
+      - "3478:3478/tcp"
+      - "3478:3478/udp"
+      - "49152-65535:49152-65535/udp"
+    environment:
+      - DETECT_EXTERNAL_IP=yes
+    command:
+      - -n
+      - --log-file=stdout
+      - --listening-port=3478
+      - --fingerprint
+      - --lt-cred-mech
+      - --user=username:password
+      - --realm=moodmelodies.app
+    volumes:
+      - coturn_data:/var/lib/coturn
+
+volumes:
+  redis_data:
+  coturn_data:
+
+networks:
+  default:
+    name: moodmelodies-network
+
+

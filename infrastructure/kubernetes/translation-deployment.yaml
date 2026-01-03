@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: translation
+  namespace: moodmelodies
+  labels:
+    app: translation
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: translation
+  template:
+    metadata:
+      labels:
+        app: translation
+    spec:
+      containers:
+      - name: translation
+        image: your-registry/moodmelodies-translation:latest
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: FLASK_ENV
+          value: "production"
+        - name: PORT
+          value: "5000"
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: moodmelodies-config
+              key: redis-host
+        - name: REDIS_PORT
+          value: "6379"
+        - name: USE_GPU
+          value: "true"
+        - name: MODEL_CACHE_DIR
+          value: "/app/models"
+        - name: LOG_LEVEL
+          value: "INFO"
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+            nvidia.com/gpu: 1
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+            nvidia.com/gpu: 1
+        volumeMounts:
+        - name: models-volume
+          mountPath: /app/models
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+      - name: models-volume
+        persistentVolumeClaim:
+          claimName: translation-models-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: translation
+  namespace: moodmelodies
+spec:
+  selector:
+    app: translation
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+  type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: translation-models-pvc
+  namespace: moodmelodies
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: efs-sc
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: translation-hpa
+  namespace: moodmelodies
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: translation
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 85
+
+
