@@ -150,7 +150,7 @@ else
 fi
 
 # Check translation service
-if curl -f http://localhost:5000/health > /dev/null 2>&1; then
+if curl -f http://localhost:7777/health > /dev/null 2>&1; then
     echo -e "${GREEN}✓ Translation service is healthy${NC}"
 else
     echo -e "${YELLOW}⚠ Translation service not responding${NC}"

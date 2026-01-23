@@ -1,15 +1,21 @@
 # Use Python 3.11 slim image
 FROM python:3.11-slim
 
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
 # Set working directory
 WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    build-essential \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+  apt-get install -y --no-install-recommends \
+  build-essential \
+  git \
+  curl \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean
 
 # Copy requirements
 COPY requirements.txt .
@@ -22,7 +28,10 @@ COPY src ./src
 
 # Create directories
 RUN mkdir -p models logs && \
-    chmod -R 755 models logs
+  chmod -R 755 models logs
+
+# Set PYTHONPATH to include src directory for proper imports
+ENV PYTHONPATH=/app/src
 
 # Download models during build (optional - comment out for faster builds)
 # RUN python -c "from transformers import MarianMTModel, MarianTokenizer; \
@@ -30,13 +39,16 @@ RUN mkdir -p models logs && \
 #     MarianMTModel.from_pretrained('Helsinki-NLP/opus-mt-hi-en', cache_dir='./models')"
 
 # Expose port
-EXPOSE 5000
+EXPOSE 7777
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
-  CMD python -c "import requests; requests.get('http://localhost:5000/health', timeout=3)"
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
+  CMD curl -f http://localhost:7777/health || exit 1
+
+# Change workdir to src for proper relative imports
+WORKDIR /app/src
 
 # Run with gunicorn for production
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--threads", "4", "--timeout", "60", "src.app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:7777", "--workers", "2", "--threads", "4", "--timeout", "120", "--graceful-timeout", "30", "app:app"]
 
 

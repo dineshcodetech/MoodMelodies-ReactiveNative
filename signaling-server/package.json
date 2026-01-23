@@ -6,46 +6,55 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "nodemon --exec ts-node src/server.ts",
+    "dev": "nodemon --exec node --loader ts-node/esm src/server.ts",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix"
   },
-  "keywords": ["webrtc", "signaling", "translation", "voip"],
+  "keywords": [
+    "webrtc",
+    "signaling",
+    "translation",
+    "voip"
+  ],
   "author": "MoodMelodies Team",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.7.2",
-    "redis": "^4.6.13",
-    "winston": "^3.11.0",
-    "dotenv": "^16.3.1",
-    "joi": "^17.11.0",
-    "uuid": "^9.0.1",
+    "@prisma/client": "6.2.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
-    "express-rate-limit": "^7.1.5"
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.3",
+    "prisma": "6.2.1",
+    "redis": "^4.6.13",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.1",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.10.6",
     "@types/cors": "^2.8.17",
-    "@types/uuid": "^9.0.7",
-    "typescript": "^5.3.3",
-    "nodemon": "^3.0.2",
-    "ts-node": "^10.9.2",
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.11",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.1",
-    "eslint": "^8.56.0",
+    "@types/node": "^20.10.6",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
-    "@typescript-eslint/parser": "^6.16.0"
+    "@typescript-eslint/parser": "^6.16.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   }
 }
-
-

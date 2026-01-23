@@ -185,7 +185,7 @@ def internal_error(error):
 
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
+    port = int(os.getenv('PORT', 7777))
     debug = os.getenv('FLASK_ENV') == 'development'
     
     logger.info(f'Starting translation service on port {port}')

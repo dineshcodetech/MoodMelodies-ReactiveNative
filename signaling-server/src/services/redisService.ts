@@ -102,7 +102,7 @@ export class RedisService {
   public async removeFromMatchmakingQueue(userId: string, language: string): Promise<void> {
     const queueKey = `matchmaking:${language}`;
     const items = await this.client.lRange(queueKey, 0, -1);
-    
+
     for (const item of items) {
       const user: User = JSON.parse(item);
       if (user.userId === userId) {
@@ -142,7 +142,19 @@ export class RedisService {
   }
 
   public async deleteSocketSession(socketId: string): Promise<void> {
+    const userId = await this.getSocketSession(socketId);
+    if (userId) {
+      await this.client.del(`user:${userId}:socket`);
+    }
     await this.client.del(`socket:${socketId}`);
+  }
+
+  public async setUserIdSocket(userId: string, socketId: string): Promise<void> {
+    await this.client.setEx(`user:${userId}:socket`, 3600, socketId);
+  }
+
+  public async getUserIdSocket(userId: string): Promise<string | null> {
+    return await this.client.get(`user:${userId}:socket`);
   }
 }
 

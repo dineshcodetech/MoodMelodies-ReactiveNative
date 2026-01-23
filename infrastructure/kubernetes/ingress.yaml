@@ -36,7 +36,7 @@ spec:
           service:
             name: translation
             port:
-              number: 5000
+              number: 7777
 ---
 apiVersion: v1
 kind: ConfigMap

@@ -86,7 +86,7 @@ docker-compose up -d
 
 This starts:
 - ✅ Signaling Server (port 3000)
-- ✅ Translation Service (port 5000)
+- ✅ Translation Service (port 7777)
 - ✅ Redis (port 6379)
 - ✅ TURN Server (optional, port 3478)
 
@@ -245,7 +245,7 @@ JWT_SECRET=your-secret-key
 
 **Translation Service (.env):**
 ```bash
-PORT=5000
+PORT=7777
 FLASK_ENV=production
 REDIS_HOST=localhost
 USE_GPU=true

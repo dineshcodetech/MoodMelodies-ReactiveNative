@@ -1,0 +1,45 @@
+# React Native
+node_modules/
+.expo/
+.expo-shared/
+
+# iOS
+MoodMelodies/ios/build/
+MoodMelodies/ios/Pods/
+MoodMelodies/ios/*.xcworkspace
+MoodMelodies/ios/*.xcuserdata
+MoodMelodies/ios/DerivedData/
+
+# Android
+MoodMelodies/android/build/
+MoodMelodies/android/app/build/
+MoodMelodies/android/.gradle/
+MoodMelodies/android/local.properties
+*.apk
+*.aab
+
+# Metro
+.metro-health-check*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# Testing
+coverage/

@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(uuid())
+  phoneNumber    String   @unique
+  name           String?
+  avatar         String?
+  status         String   @default("offline") // online, offline, in-call
+  currentRoomId  String?
+  lastSeen       DateTime @default(now())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  callsInitiated Call[]   @relation("Caller")
+  callsReceived  Call[]   @relation("Receiver")
+}
+
+model Call {
+  id          String    @id @default(uuid())
+  roomId      String    @unique
+  status      String    @default("pending") // pending, active, ended, missed
+  callerId    String
+  receiverId  String
+  caller      User      @relation("Caller", fields: [callerId], references: [id])
+  receiver    User      @relation("Receiver", fields: [receiverId], references: [id])
+  startedAt   DateTime  @default(now())
+  endedAt     DateTime?
+  duration    Int? // in seconds
+}

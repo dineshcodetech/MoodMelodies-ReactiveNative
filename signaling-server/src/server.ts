@@ -8,9 +8,11 @@ import { rateLimit } from 'express-rate-limit';
 
 import { logger } from './utils/logger';
 import { RedisService } from './services/redisService';
+import { DbService } from './services/dbService';
 import { CallHandler } from './handlers/callHandler';
 import { SignalingHandler } from './handlers/signalingHandler';
 import { MatchmakingHandler } from './handlers/matchmakingHandler';
+import { loginOrSignup, searchUser } from './handlers/authHandler';
 
 dotenv.config();
 
@@ -40,7 +42,7 @@ const io = new Server(httpServer, {
     credentials: true
   },
   pingTimeout: 60000,
-  pingInterval: 25000
+  pingInterval: 27777
 });
 
 // Health check endpoint
@@ -65,6 +67,10 @@ app.get('/metrics', async (req, res) => {
   });
 });
 
+// Auth Routes
+app.post('/api/auth/login', loginOrSignup);
+app.get('/api/users/search', searchUser);
+
 // Initialize services
 async function initializeServices() {
   try {
@@ -72,6 +78,11 @@ async function initializeServices() {
     const redisService = RedisService.getInstance();
     await redisService.connect();
     logger.info('Redis connected successfully');
+
+    // Initialize Database
+    const dbService = DbService.getInstance();
+    await dbService.connect();
+    logger.info('Database connected successfully');
 
     // Initialize handlers
     const callHandler = new CallHandler(io);
@@ -85,6 +96,7 @@ async function initializeServices() {
       // Call lifecycle events
       socket.on('join_room', (data) => callHandler.handleJoinRoom(socket, data));
       socket.on('leave_room', (data) => callHandler.handleLeaveRoom(socket, data));
+      socket.on('start_call', (data) => callHandler.handleStartCall(socket, data));
 
       // WebRTC signaling events
       socket.on('offer', (data) => signalingHandler.handleOffer(socket, data));

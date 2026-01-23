@@ -1,0 +1,88 @@
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 12:52:07"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 12:52:07"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 12:52:07"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 12:52:07"}
+{"level":"info","message":"Signaling server running on port 3000","timestamp":"2026-01-03 12:52:07"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 12:52:07"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-03 12:53:08"}
+{"level":"info","message":"Server closed","timestamp":"2026-01-03 12:53:08"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 12:53:20"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 12:53:20"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 12:53:20"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 12:53:20"}
+{"level":"info","message":"Signaling server running on port 3000","timestamp":"2026-01-03 12:53:20"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 12:53:20"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-03 12:54:22"}
+{"level":"info","message":"Server closed","timestamp":"2026-01-03 12:54:22"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 12:54:39"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 12:54:39"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 12:54:39"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 12:54:39"}
+{"level":"info","message":"Signaling server running on port 3000","timestamp":"2026-01-03 12:54:39"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 12:54:39"}
+{"level":"info","message":"Client connected: LG_XnZ2c18lNGzYzAAAE","timestamp":"2026-01-03 20:07:09"}
+{"level":"info","message":"Client connected: lXLv1r40VmPyEPkYAAAF","timestamp":"2026-01-03 20:07:09"}
+{"level":"info","message":"Client disconnected: lXLv1r40VmPyEPkYAAAF","timestamp":"2026-01-03 20:07:09"}
+{"level":"info","message":"Client disconnected: LG_XnZ2c18lNGzYzAAAE","timestamp":"2026-01-03 20:07:33"}
+{"level":"info","message":"Client connected: GfihqfUVgozLjoU_AAAI","timestamp":"2026-01-03 20:09:23"}
+{"level":"info","message":"Client connected: CogjxxmojHsZlXL3AAAJ","timestamp":"2026-01-03 20:09:23"}
+{"level":"info","message":"Room created: 1649c049-e0cc-48d3-8258-b741f9a72fd2","timestamp":"2026-01-03 20:09:24"}
+{"level":"info","message":"User user_w72nekflo added to room 1649c049-e0cc-48d3-8258-b741f9a72fd2","timestamp":"2026-01-03 20:09:24"}
+{"level":"info","message":"User user_w72nekflo joined room 1649c049-e0cc-48d3-8258-b741f9a72fd2","timestamp":"2026-01-03 20:09:24"}
+{"level":"info","message":"Client disconnected: CogjxxmojHsZlXL3AAAJ","timestamp":"2026-01-03 20:09:55"}
+{"level":"info","message":"Client disconnected: GfihqfUVgozLjoU_AAAI","timestamp":"2026-01-03 20:09:55"}
+{"level":"info","message":"User user_w72nekflo removed from matchmaking on disconnect","timestamp":"2026-01-03 20:09:55"}
+{"level":"info","message":"Room 1649c049-e0cc-48d3-8258-b741f9a72fd2 deleted (empty)","timestamp":"2026-01-03 20:09:55"}
+{"level":"info","message":"User user_w72nekflo disconnected and cleaned up","timestamp":"2026-01-03 20:09:55"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-03 20:22:18"}
+{"level":"info","message":"Server closed","timestamp":"2026-01-03 20:22:18"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 20:22:36"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 20:22:36"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 20:22:36"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 20:22:36"}
+{"level":"info","message":"Signaling server running on port 3000","timestamp":"2026-01-03 20:22:36"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 20:22:36"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-03 20:27:36"}
+{"level":"info","message":"Server closed","timestamp":"2026-01-03 20:27:36"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 20:27:37"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 20:27:37"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 20:27:37"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 20:27:37"}
+{"level":"info","message":"Signaling server running on port 3000","timestamp":"2026-01-03 20:27:37"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 20:27:37"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-03 20:28:39"}
+{"level":"info","message":"Server closed","timestamp":"2026-01-03 20:28:39"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 20:28:41"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 20:28:41"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 20:28:41"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 20:28:41"}
+{"level":"info","message":"Signaling server running on port 3000","timestamp":"2026-01-03 20:28:41"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 20:28:41"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-03 20:29:04"}
+{"level":"info","message":"Server closed","timestamp":"2026-01-03 20:29:04"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 20:29:05"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 20:29:05"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 20:29:05"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 20:29:05"}
+{"level":"info","message":"Signaling server running on port 3000","timestamp":"2026-01-03 20:29:05"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 20:29:05"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-03 20:31:11"}
+{"level":"info","message":"Server closed","timestamp":"2026-01-03 20:31:11"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"Database connected successfully","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"Database connected successfully","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"Signaling server 1.1.0-auth-db running on port 3000","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-04 02:07:38"}
+{"level":"info","message":"Redis client connecting...","timestamp":"2026-01-03 20:38:57"}
+{"level":"info","message":"Redis client ready","timestamp":"2026-01-03 20:38:57"}
+{"level":"info","message":"Redis connected successfully","timestamp":"2026-01-03 20:38:57"}
+{"level":"info","message":"Database connected successfully","timestamp":"2026-01-03 20:38:58"}
+{"level":"info","message":"Database connected successfully","timestamp":"2026-01-03 20:38:58"}
+{"level":"info","message":"All handlers initialized successfully","timestamp":"2026-01-03 20:38:58"}
+{"level":"info","message":"Signaling server 1.1.0-auth-db running on port 3000","timestamp":"2026-01-03 20:38:58"}
+{"level":"info","message":"Environment: development","timestamp":"2026-01-03 20:38:58"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully...","timestamp":"2026-01-04 14:46:36"}
+{"code":"ECONNRESET","errno":-104,"level":"error","message":"Redis Client Error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read","timestamp":"2026-01-04 14:46:36"}

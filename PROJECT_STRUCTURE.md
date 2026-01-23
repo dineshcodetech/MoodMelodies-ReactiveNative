@@ -375,7 +375,7 @@ interface TranslationMessage {
 | Service | Port | Protocol | Public |
 |---------|------|----------|--------|
 | Signaling Server | 3000 | HTTP/WS | Yes |
-| Translation Service | 5000 | HTTP | Internal |
+| Translation Service | 7777 | HTTP | Internal |
 | Redis | 6379 | TCP | Internal |
 | TURN Server | 3478 | UDP/TCP | Yes |
 

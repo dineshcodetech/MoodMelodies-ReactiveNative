@@ -34,7 +34,7 @@ docker-compose up -d
 
 This starts:
 - Redis (port 6379)
-- Translation Service (port 5000)
+- Translation Service (port 7777)
 - Signaling Server (port 3000)
 - TURN Server (optional, port 3478)
 
@@ -42,7 +42,7 @@ This starts:
 ```bash
 # Check health
 curl http://localhost:3000/health
-curl http://localhost:5000/health
+curl http://localhost:7777/health
 
 # Check logs
 docker-compose logs -f signaling
@@ -72,7 +72,7 @@ Edit `MoodMelodies/src/constants/config.ts`:
 export const API_CONFIG = {
   SIGNALING_URL: 'http://10.0.2.2:3000', // Android emulator
   // SIGNALING_URL: 'http://localhost:3000', // iOS simulator
-  TRANSLATION_URL: 'http://10.0.2.2:5000',
+  TRANSLATION_URL: 'http://10.0.2.2:7777',
 };
 ```
 
@@ -86,7 +86,7 @@ Internet
    │
    ├─► Application Load Balancer (ALB)
    │      ├─► Target Group: Signaling (Port 3000)
-   │      └─► Target Group: Translation (Port 5000)
+   │      └─► Target Group: Translation (Port 7777)
    │
    ├─► EC2 Auto Scaling Group (Signaling)
    │      └─► 2-4 instances (t3.small)
@@ -132,7 +132,7 @@ aws ec2 create-security-group \
 aws ec2 authorize-security-group-ingress \
   --group-id sg-yyy \
   --protocol tcp \
-  --port 5000 \
+  --port 7777 \
   --source-group sg-xxx # Only from ALB
 ```
 
@@ -209,7 +209,7 @@ docker run -d \
   --name translation \
   --restart unless-stopped \
   --runtime=nvidia \
-  -p 5000:5000 \
+  -p 7777:7777 \
   -e FLASK_ENV=production \
   -e USE_GPU=true \
   -e REDIS_HOST=<elasticache-endpoint> \
@@ -236,7 +236,7 @@ aws elbv2 create-target-group \
 aws elbv2 create-target-group \
   --name moodmelodies-translation \
   --protocol HTTP \
-  --port 5000 \
+  --port 7777 \
   --vpc-id vpc-xxx \
   --health-check-path /health
 
@@ -468,7 +468,7 @@ ALLOWED_ORIGINS=https://app.moodmelodies.com
 **Translation Service:**
 ```bash
 FLASK_ENV=production
-PORT=5000
+PORT=7777
 REDIS_HOST=<redis-host>
 USE_GPU=true
 MODEL_CACHE_DIR=/app/models
@@ -519,7 +519,7 @@ scrape_configs:
       - targets: ['signaling:3000']
   - job_name: 'translation'
     static_configs:
-      - targets: ['translation:5000']
+      - targets: ['translation:7777']
 ```
 
 ---
@@ -596,7 +596,7 @@ redis-cli -h <redis-host> ping
 **Issue: High latency**
 ```bash
 # Check translation latency
-curl -X POST http://translation:5000/api/v1/translate \
+curl -X POST http://translation:7777/api/v1/translate \
   -H "Content-Type: application/json" \
   -d '{"text":"Hello","source_lang":"en","target_lang":"hi"}' \
   -w "@curl-format.txt"

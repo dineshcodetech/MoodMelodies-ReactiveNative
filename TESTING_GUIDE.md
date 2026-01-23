@@ -255,7 +255,7 @@ describe('TranslationService', () => {
 
   beforeEach(() => {
     service = new TranslationService({
-      apiUrl: 'http://localhost:5000',
+      apiUrl: 'http://localhost:7777',
     });
 
     mockedAxios.create.mockReturnValue(mockedAxios as any);
@@ -452,7 +452,7 @@ import time
 import requests
 import statistics
 
-API_URL = "http://localhost:5000/api/v1/translate"
+API_URL = "http://localhost:7777/api/v1/translate"
 
 test_sentences = [
     "Hello, how are you?",
@@ -534,7 +534,7 @@ ab -n 1000 -c 10 http://localhost:3000/health
 # Test translation endpoint
 echo -e "\n2. Translation API (500 requests, 20 concurrent)"
 ab -n 500 -c 20 -p translation-payload.json -T application/json \
-   http://localhost:5000/api/v1/translate
+   http://localhost:7777/api/v1/translate
 
 # WebSocket connection test
 echo -e "\n3. WebSocket Connections (100 concurrent)"
@@ -567,7 +567,7 @@ async function loadTest() {
   }
   
   // Wait for all connections
-  await new Promise(resolve => setTimeout(resolve, 5000));
+  await new Promise(resolve => setTimeout(resolve, 7777));
   
   const connectedCount = clients.filter(c => c.connected).length;
   console.log(`\n✅ ${connectedCount}/${NUM_CLIENTS} clients connected`);

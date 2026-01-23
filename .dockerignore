@@ -1,0 +1,90 @@
+# ============================================================================
+# MoodMelodies - Docker Ignore File
+# ============================================================================
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# React Native Mobile App (not needed in backend containers)
+MoodMelodies/
+*.apk
+*.aab
+*.ipa
+
+# IDE and Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files (use docker-compose or --env-file)
+.env
+.env.*
+!.env.example
+
+# Node.js
+**/node_modules/
+**/npm-debug.log*
+**/yarn-error.log*
+**/.npm/
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/*.so
+**/.Python
+**/pip-log.txt
+**/pip-delete-this-directory.txt
+**/.tox/
+**/.coverage
+**/htmlcov/
+**/.pytest_cache/
+**/.mypy_cache/
+**/venv/
+**/ENV/
+
+# Build artifacts
+**/dist/
+**/build/
+**/*.egg-info/
+**/*.egg
+
+# Logs
+**/logs/
+**/*.log
+
+# Test files
+**/__tests__/
+**/tests/
+**/test/
+**/*.test.ts
+**/*.test.js
+**/*.spec.ts
+**/*.spec.js
+**/coverage/
+**/jest.config.*
+**/pytest.ini
+
+# Model cache (will be downloaded at runtime)
+**/models/
+!**/models/.gitkeep
+
+# Infrastructure files (not needed inside containers)
+infrastructure/kubernetes/
+infrastructure/terraform/
+scripts/
+
+# Temporary files
+**/tmp/
+**/temp/
+**/*.tmp
+**/*.temp

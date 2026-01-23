@@ -115,7 +115,7 @@ export class RoomService {
       // Delete room after a delay
       setTimeout(async () => {
         await this.redisService.deleteRoom(roomId);
-      }, 5000);
+      }, 7777);
       
       logger.info(`Room ${roomId} ended`);
     }
